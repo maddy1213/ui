@@ -3,9 +3,10 @@ require.config({
         jquery: 'vendor/jquery/dist/jquery',
         underscore: 'vendor/underscore/underscore',
         backbone: 'vendor/backbone/backbone',
-        'backbone.babysitter': 'vendor/backbone.babysitter/lib/backbone.babysitter.js',
-        'backbone.wreqr': 'vendor/backbone.wreqr/lib/backbone.wreqr.js',
-        'backbone.marionette': 'vendor/backbone.marionette/lib/core/backbone.marionette.js'
+        text: 'vendor/requirejs-plugins/lib/text',
+        'backbone.babysitter': 'vendor/backbone.babysitter/lib/backbone.babysitter',
+        'backbone.wreqr': 'vendor/backbone.wreqr/lib/backbone.wreqr',
+        'backbone.marionette': 'vendor/backbone.marionette/lib/core/backbone.marionette'
     },
     shim: {
         underscore: {
@@ -23,7 +24,15 @@ require.config({
     deps: ['jquery', 'underscore']
 });
 
-require(['views/app'], function (AppView) {
+require(['backbone.marionette'], function (Marionette) {
     'use strict';
-    new AppView();
+    return Marionette.extend({
+        onStart: function () {
+            this.router = new(require('tesla.router'))({
+                controller: new(require('tesla.controller'))({
+                    app: this.app
+                })
+            });
+        }
+    });
 });

@@ -4,6 +4,6 @@ define(function (require) {
     var Marionette = require('backbone.marionette');
 
     return Marionette.LayoutView.extend({
-        template: require('text!../templates/tesla-survey.html')
+        template: require('text!../templates/tesla-survey-summary.html')
     });
 });

@@ -1,9 +1,9 @@
-ar Artist = Backbone.Model.extend({
+var Artist = Backbone.Model.extend({
     defaults: {
         name: 'New Artist',
         birthday: 'January 1, 1970',
         hometown: 'Los Angeles, CA',
-        favoriteColor: 'blue',
+        favoriteColor: 'blue'
     }
 });
 
